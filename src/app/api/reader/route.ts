@@ -51,7 +51,7 @@ export async function WhoAmI(): Promise<IReader> {
     })
     .catch((e) => {
       console.error("获取用户信息失败：",e);
-      return redirect(FetchURL + "/api/auth/login?error=CredentialsSignin");
+      return redirect("" + "/api/auth/login?error=CredentialsSignin");
     });
 }
 

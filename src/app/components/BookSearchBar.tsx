@@ -35,7 +35,7 @@ export default function BookSearchBar({
 }
 
 export async function getBooks(): Promise<IBook[]> {
-  return fetch(FetchURL + "/api/book")
+  return fetch("" + "/api/book")
     .then((res) => res.json())
     .then((data) => {
       return data.data;

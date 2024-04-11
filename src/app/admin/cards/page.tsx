@@ -172,7 +172,7 @@ export default CardsPage;
 
 async function getReaders(): Promise<IReader[]> {
   //TODO:get all readers from server
-  return fetch(FetchURL + "/api/card")
+  return fetch("" + "/api/card")
     .then((res) => res.json())
     .then((res) => {
       return res.data;

@@ -20,7 +20,7 @@ function BrowsePage() {
   const loading = useRef();
   const borrowBook = (bookid: number) => {
     (loading.current as any).open();
-    fetch(FetchURL + "/api/reader/borrow", {
+    fetch("" + "/api/reader/borrow", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

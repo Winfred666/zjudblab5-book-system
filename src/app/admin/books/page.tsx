@@ -52,7 +52,7 @@ function BooksPage() {
 
   
     async function removeBook(bookid:IDType){
-      return fetch(FetchURL + "/api/book/delete", {
+      return fetch("" + "/api/book/delete", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

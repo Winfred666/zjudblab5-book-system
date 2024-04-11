@@ -44,7 +44,7 @@ export default function ModifyBookDialog(props: any) {
       return;
     }
     //TODO: send request to modify book
-    fetch(FetchURL + "/api/book/create", {
+    fetch("" + "/api/book/create", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

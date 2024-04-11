@@ -31,7 +31,7 @@ export default function BorrowTable({ borrows }: { borrows: IBorrow[] }) {
 
   
   const returnBook = (borrow: IBorrow) => {
-    fetch(FetchURL + "/api/reader/return",{
+    fetch("" + "/api/reader/return",{
       method:"POST",
       headers: {
         "Content-Type": "application/json",
@@ -66,7 +66,7 @@ export default function BorrowTable({ borrows }: { borrows: IBorrow[] }) {
       );
       return;
     }
-    fetch(FetchURL + "/api/reader/borrow", {
+    fetch("" + "/api/reader/borrow", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
