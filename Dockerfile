@@ -29,6 +29,9 @@ COPY . .
 # Uncomment the following line in case you want to disable telemetry during the build.
 # ENV NEXT_TELEMETRY_DISABLED 1
 
+RUN npm run rundb \
+&& npm run dummy
+
 RUN \
   if [ -f yarn.lock ]; then yarn run build; \
   elif [ -f package-lock.json ]; then npm run build; \
@@ -40,7 +43,10 @@ RUN \
 FROM base AS runner
 WORKDIR /app
 
-ENV NODE_ENV production
+ENV NODE_ENV=production \
+    NEXTAUTH_SECRET="Wp35jIb/R/zcHlpVb4Rqpk0VACOdtyjTqc6slrCViQE=" \
+    NEXT_PUBLIC_URL="http://localhost:3000"
+
 # Uncomment the following line in case you want to disable telemetry during runtime.
 # ENV NEXT_TELEMETRY_DISABLED 1
 
