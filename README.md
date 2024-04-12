@@ -4,6 +4,7 @@
 
 预览：https://121.40.46.192/
 
+account and password is both admin
 (2024.4 - 2024.7)
 
 ##### 1.使用docker
