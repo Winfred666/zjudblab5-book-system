@@ -6,6 +6,9 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositorie
 FROM base AS deps
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 RUN apk add --no-cache libc6-compat
+
+# RUN apk add g++ make py3-pip
+
 WORKDIR /app
 
 # Install dependencies based on the preferred package manager
@@ -43,9 +46,12 @@ RUN \
 FROM base AS runner
 WORKDIR /app
 
+
+# BEWARE TO CHANGE YOUR URL WHEN DEPLOY!!!
 ENV NODE_ENV=production \
     NEXTAUTH_SECRET="Wp35jIb/R/zcHlpVb4Rqpk0VACOdtyjTqc6slrCViQE=" \
-    NEXT_PUBLIC_URL="http://localhost:3000"
+    NEXT_PUBLIC_URL="http://localhost:3000"\
+    NEXTAUTH_URL="http://localhost:3000"
 
 # Uncomment the following line in case you want to disable telemetry during runtime.
 # ENV NEXT_TELEMETRY_DISABLED 1
