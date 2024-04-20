@@ -4,10 +4,11 @@
 
 预览：https://121.40.46.192/
 
-account and password is both admin
+for test, account and password is both `admin`
 (2024.4 - 2024.7)
 
 ##### 1.使用docker
+
 直接使用：
 
 ```shell
@@ -20,7 +21,7 @@ docker run -p 3000:3000 nextjs-docker
 
 对于部分服务器使用的 linux 系统，可能需要在 dockerfile 手动安装 `make` 等应用以完成 `gyp` package 的安装。
 
-如果需要部署服务器端，需要更改 dockerfile 的环境变量 `ENV`
+如果需要部署服务器端，需要更改 dockerfile 的环境变量 `ENV` 为服务端域名。
 
 ```shell
 RUN apk add g++ make py3-pip
