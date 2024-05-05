@@ -1,6 +1,6 @@
 import { IDType } from "./types";
 
-export const FetchURL = process.env.NEXT_PUBLIC_URL;
+export const FetchURL = "https://121.40.46.192";
 
 //time that reader can keep the book
 export const MaxBorrowDay = 30;

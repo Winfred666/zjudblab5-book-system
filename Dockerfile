@@ -7,18 +7,25 @@ FROM base AS deps
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 RUN apk add --no-cache libc6-compat
 
-# RUN apk add g++ make py3-pip
+# Install python/pip
+
+# RUN apk --no-cache --virtual build-dependencies add \
+#        python \
+#        make \
+#        g++
+
+RUN apk add g++ make py3-pip
+
 
 WORKDIR /app
 
+RUN npm config set registry https://registry.npm.taobao.org\
+ && npm config set registry http://r.cnpmjs.org/
+
 # Install dependencies based on the preferred package manager
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
-RUN \
-  if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
-  elif [ -f package-lock.json ]; then npm ci; \
-  elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm i --frozen-lockfile; \
-  else echo "Lockfile not found." && exit 1; \
-  fi
+
+RUN npm ci;
 
 
 # Rebuild the source code only when needed
@@ -32,26 +39,30 @@ COPY . .
 # Uncomment the following line in case you want to disable telemetry during the build.
 # ENV NEXT_TELEMETRY_DISABLED 1
 
+
 RUN npm run rundb \
 && npm run dummy
 
-RUN \
-  if [ -f yarn.lock ]; then yarn run build; \
-  elif [ -f package-lock.json ]; then npm run build; \
-  elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm run build; \
-  else echo "Lockfile not found." && exit 1; \
-  fi
+
+
+ENV NODE_ENV=production
+ENV NEXTAUTH_SECRET="Wp35jIb/R/zcHlpVb4Rqpk0VACOdtyjTqc6slrCViQE="
+ENV NEXT_PUBLIC_URL="https://121.40.46.192/book"
+ENV NEXTAUTH_URL="https://121.40.46.192/book"
+
+RUN npm run build;
 
 # Production image, copy all the files and run next
 FROM base AS runner
 WORKDIR /app
 
 
-# BEWARE TO CHANGE YOUR URL WHEN DEPLOY!!!
-ENV NODE_ENV=production \
-    NEXTAUTH_SECRET="Wp35jIb/R/zcHlpVb4Rqpk0VACOdtyjTqc6slrCViQE=" \
-    NEXT_PUBLIC_URL="http://localhost:3000"\
-    NEXTAUTH_URL="http://localhost:3000"
+ENV NODE_ENV=production
+ENV NEXTAUTH_SECRET="Wp35jIb/R/zcHlpVb4Rqpk0VACOdtyjTqc6slrCViQE="
+ENV NEXT_PUBLIC_URL="https://121.40.46.192/book"
+ENV NEXTAUTH_URL="https://121.40.46.192/book"
+
+
 
 # Uncomment the following line in case you want to disable telemetry during runtime.
 # ENV NEXT_TELEMETRY_DISABLED 1
