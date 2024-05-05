@@ -47,8 +47,8 @@ RUN npm run rundb \
 
 ENV NODE_ENV=production
 ENV NEXTAUTH_SECRET="Wp35jIb/R/zcHlpVb4Rqpk0VACOdtyjTqc6slrCViQE="
-ENV NEXT_PUBLIC_URL="https://121.40.46.192/book"
-ENV NEXTAUTH_URL="https://121.40.46.192/book"
+ENV NEXT_PUBLIC_URL="https://121.40.46.192"
+ENV NEXTAUTH_URL="https://121.40.46.192"
 
 RUN npm run build;
 
@@ -59,8 +59,8 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 ENV NEXTAUTH_SECRET="Wp35jIb/R/zcHlpVb4Rqpk0VACOdtyjTqc6slrCViQE="
-ENV NEXT_PUBLIC_URL="https://121.40.46.192/book"
-ENV NEXTAUTH_URL="https://121.40.46.192/book"
+ENV NEXT_PUBLIC_URL="https://121.40.46.192"
+ENV NEXTAUTH_URL="https://121.40.46.192"
 
 
 
